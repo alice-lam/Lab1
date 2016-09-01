@@ -24,9 +24,10 @@ Parameter LCD display
 #include <stdint.h>
 #include "ST7735.h"
 
-// int32_t Ymax,Ymin,X;        // X goes from 0 to 127
-int32_t Yrange;		
-int32_t Xrange;	
+int32_t Ymx,Ymn;  			// Y min and Y max set during initialiazaion and plotting 
+int32_t Xmx,Xmn;        // X min and X max for initialiazaion and plotting 
+int32_t Yrnge;		
+int32_t Xrnge;	
 
 void ST7735_sDecOut3(int32_t n){
 	//CODE
@@ -206,8 +207,8 @@ void ST7735_XYplot(uint32_t num, int32_t bufX[], int32_t bufY[]){
 	int32_t y;
 	uint16_t color = ST7735_Color565(r, g ,b);
 	for(uint32_t j=0; j<num; j++){
-		x = bufX[j]/128;
-		y = bufX[j]/128;
+	//	x = 32+(127*(Ymax-bufX[j]))/Yrnge;
+	//	y = 32+(127*(Ymax-bufX[j]))/Xrnge;
 		ST7735_DrawPixel(x,y,color);
 	}
 }
