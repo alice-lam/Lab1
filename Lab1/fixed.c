@@ -26,16 +26,57 @@ Parameter LCD display
 
 void ST7735_sDecOut3(int32_t n){
 	//CODE
+	char number[6];
+	int32_t sign = 0;
+	int32_t length = 0;
+	int32_t div = 1000;
+	int32_t i;
 	
-	//check >9999
+	//check >9999 or <-9999
+	if ((n>9999)||(n<-9999)){
+		number[0] = ' ';                   
+		number[1] = '*';
+		number[2] = '.';
+		number[3] = '*';
+		number[4] = '*';
+		number[5] = '*';
 	
-	//check neg/pos
+	}
+	//*check neg/pos
+	if (n<0){
+		sign = -1;
+		n=-n;		//change to absolute value
+	}
+	//check length of int
+//		if ((n < 10)&&(n>-10)){ length = 1;}
+//		else if ((n < 100)&&(n>-100)){ length = 2;}
+//		else if ((n < 1000)&&(n>-1000)){ length = 3;}
+//		else if ((n < 10000)&&(n>-10000)){ length = 4;}
 	
 	//output to screen w/ "."
+		
+		for(i = 0; i < 6; i++){
+			
+			if(i == 0 && sign==-1){
+				number[i] = '-';
+			}
+			else if(i == 0 && sign==0){
+				number[i] = ' ';
+			}
+			else if(i == 2){
+				number[i] = '.';
+			}
+			else{
+				int num = n/div;
+				number[i] = num;
+				n = n%div;
+				div = div / 10;
+			}
+		}		
 	//fputc(c);? or imp printf
+		ST7735_OutString((char*) number); 
+
 }
-
-
 /**************ST7735_uBinOut8***************
  unsigned 32-bit binary fixed-point with a resolution of 1/256. 
  The full-scale range is from 0 to 999.99. 
@@ -58,7 +99,47 @@ Parameter LCD display
 256000	  "***.**"
 */
 void ST7735_uBinOut8(uint32_t n){
-	//CODE
+	char number[6];
+	int32_t sign = 0;
+	int32_t length = 0;
+	int32_t div = 1000;
+	int32_t i;
+	
+	//check >256000 or <-256000
+	if ((n>256000)||(n<-256000)){
+		number[0] = '*';                   
+		number[1] = '*';
+		number[2] = '*';
+		number[3] = '.';
+		number[4] = '*';
+		number[5] = '*';
+	}
+	
+	//*1000 then divide by 256
+	n = n*1000;
+	n = n/256;
+	
+	for(i = 0; i < 6; i++){
+			
+			if(i == 0 && sign==-1){
+				number[i] = '-';
+			}
+			else if(i == 0 && sign==0){
+				number[i] = ' ';
+			}
+			else if(i == 2){
+				number[i] = '.';
+			}
+			else{
+				int num = n/div;
+				number[i] = num;
+				n = n%div;
+				div = div / 10;
+			}
+	}		
+	//fputc(c);? or imp printf
+		ST7735_OutString((char*) number); 
+			
 }
 
 /**************ST7735_XYplotInit***************
