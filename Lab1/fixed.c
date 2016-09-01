@@ -73,7 +73,11 @@ void ST7735_uBinOut8(uint32_t n){
  assumes minX < maxX, and miny < maxY
 */
 void ST7735_XYplotInit(char *title, int32_t minX, int32_t maxX, int32_t minY, int32_t maxY){
-	//CODE
+  ST7735_InitR(INITR_REDTAB);
+  ST7735_OutString(title);
+  ST7735_PlotClear(minY, maxY);  // range from 0 to 4095
+	
+  
 }
 
 /**************ST7735_XYplot***************
@@ -84,9 +88,38 @@ void ST7735_XYplotInit(char *title, int32_t minX, int32_t maxX, int32_t minY, in
  Outputs: none
  assumes ST7735_XYplotInit has been previously called
  neglect any points outside the minX maxY minY maxY bounds
+
+****************ST7735_DrawPixel*************
+Color the pixel at the given coordinates with the given color.
+ Requires 13 bytes of transmission
+ Input: x     horizontal position of the pixel, columns from the left edge
+               must be less than 128
+               0 is on the left, 126 is near the right
+        y     vertical position of the pixel, rows from the top edge
+               must be less than 160
+               159 is near the wires, 0 is the side opposite the wires
+        color 16-bit color, which can be produced by ST7735_Color565()
+ Output: none
+
 */
 void ST7735_XYplot(uint32_t num, int32_t bufX[], int32_t bufY[]){
-	//CODE
+	/*CODE
+	int32_t temp = num/128; 
+	for(uint32_t j=0;j<128;j++){
+    ST7735_PlotPoint(1); // cubic,linear
+    ST7735_PlotNext();
+  }   // called 128 times
+  while(1){
+  }
+	*/
+	//x
+	uint8_t r = 0;
+	uint8_t g = 0;
+	uint8_t b = 255;
+	uint16_t color = ST7735_Color565(r, g ,b);
+	for(uint32_t j=0; j<num; j++){
+	ST7735_DrawPixel((bufX[j]/128),(bufY[j]/128),color);
+	}
 }
 
 
