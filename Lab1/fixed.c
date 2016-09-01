@@ -161,7 +161,13 @@ void ST7735_uBinOut8(uint32_t n){
 void ST7735_XYplotInit(char *title, int32_t minX, int32_t maxX, int32_t minY, int32_t maxY){
   ST7735_InitR(INITR_REDTAB);
   ST7735_OutString(title);
-  ST7735_PlotClear(minY, maxY);  // range from minY to maxY
+  ST7735_PlotClear(minY, maxY);  // range from minY to maxY, the numbers don't really matter this fuction is used here to clear the screen
+	Yrnge = maxY - minY;
+	Xrnge = maxX - minX;
+	Ymx = maxY; 
+	Ymn = minY;			
+	Xmx = maxX;
+	Xmn = minX;
 	
   
 }
@@ -174,41 +180,18 @@ void ST7735_XYplotInit(char *title, int32_t minX, int32_t maxX, int32_t minY, in
  Outputs: none
  assumes ST7735_XYplotInit has been previously called
  neglect any points outside the minX maxY minY maxY bounds
-
-****************ST7735_DrawPixel*************
-Color the pixel at the given coordinates with the given color.
- Requires 13 bytes of transmission
- Input: x     horizontal position of the pixel, columns from the left edge
-               must be less than 128
-               0 is on the left, 126 is near the right
-        y     vertical position of the pixel, rows from the top edge
-               must be less than 160
-               159 is near the wires, 0 is the side opposite the wires
-        color 16-bit color, which can be produced by ST7735_Color565()
- Output: none
-
 */
-void ST7735_XYplot(uint32_t num, int32_t bufX[], int32_t bufY[]){
-	/*CODE
-	int32_t temp = num/128; 
-	for(uint32_t j=0;j<128;j++){
-    ST7735_PlotPoint(1); // cubic,linear
-    ST7735_PlotNext();
-  }   // called 128 times
-  while(1){
-  }
-	*/
-	// x = num/(max-min)*128
-	//j = 32+(127*(Ymax-y))/Yrange // get y value to plot
-	uint8_t r = 0;
-	uint8_t g = 100;
-	uint8_t b = 50;
-	int32_t x; 
-	int32_t y;
-	uint16_t color = ST7735_Color565(r, g ,b);
+void ST7735_XYplot(uint32_t num, int32_t bufX[], int32_t bufY[]){	int32_t x; int32_t y;
+	// Mix color for ploted points, Red 0-254 
+	uint8_t r = 0;															// Red
+	uint8_t g = 100;														// Green
+	uint8_t b = 50;															// Blue
+	uint16_t color = ST7735_Color565(r, g ,b);	// Generates 16-bit color code
+	// Scale and plot points to 128X128 screen
+	// TODO: check bounds of plot points each iteration against min max x,y parameters
 	for(uint32_t j=0; j<num; j++){
-	//	x = 32+(127*(Ymax-bufX[j]))/Yrnge;
-	//	y = 32+(127*(Ymax-bufX[j]))/Xrnge;
+		y = 32+(127*(Ymx-bufY[j]))/Yrnge;
+		x = 32+(127*(Xmx-bufX[j]))/Xrnge;
 		ST7735_DrawPixel(x,y,color);
 	}
 }

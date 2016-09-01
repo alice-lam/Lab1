@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\ST7735.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\ST7735.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Thu Sep 01 14:18:26 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Thu Sep 01 15:45:21 2016
 <BR><P>
 <H3>Maximum Stack Usage =        192 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -712,8 +712,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
 </UL>
 
-<P><STRONG><a name="[93]"></a>ST7735_XYplot</STRONG> (Thumb, 54 bytes, Stack size 32 bytes, fixed.o(i.ST7735_XYplot))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = ST7735_XYplot &rArr; ST7735_DrawPixel &rArr; setAddrWindow
+<P><STRONG><a name="[93]"></a>ST7735_XYplot</STRONG> (Thumb, 114 bytes, Stack size 48 bytes, fixed.o(i.ST7735_XYplot))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = ST7735_XYplot &rArr; ST7735_DrawPixel &rArr; setAddrWindow
 </UL>
 <BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawPixel
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_Color565
@@ -721,7 +721,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[94]"></a>ST7735_XYplotInit</STRONG> (Thumb, 38 bytes, Stack size 24 bytes, fixed.o(i.ST7735_XYplotInit))
+<P><STRONG><a name="[94]"></a>ST7735_XYplotInit</STRONG> (Thumb, 66 bytes, Stack size 24 bytes, fixed.o(i.ST7735_XYplotInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = ST7735_XYplotInit &rArr; ST7735_OutString &rArr; ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
 <BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_PlotClear
