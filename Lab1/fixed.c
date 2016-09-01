@@ -24,6 +24,10 @@ Parameter LCD display
 #include <stdint.h>
 #include "ST7735.h"
 
+// int32_t Ymax,Ymin,X;        // X goes from 0 to 127
+int32_t Yrange;		
+int32_t Xrange;	
+
 void ST7735_sDecOut3(int32_t n){
 	//CODE
 	char number[6];
@@ -156,7 +160,7 @@ void ST7735_uBinOut8(uint32_t n){
 void ST7735_XYplotInit(char *title, int32_t minX, int32_t maxX, int32_t minY, int32_t maxY){
   ST7735_InitR(INITR_REDTAB);
   ST7735_OutString(title);
-  ST7735_PlotClear(minY, maxY);  // range from 0 to 4095
+  ST7735_PlotClear(minY, maxY);  // range from minY to maxY
 	
   
 }
@@ -193,13 +197,18 @@ void ST7735_XYplot(uint32_t num, int32_t bufX[], int32_t bufY[]){
   while(1){
   }
 	*/
-	//x
+	// x = num/(max-min)*128
+	//j = 32+(127*(Ymax-y))/Yrange // get y value to plot
 	uint8_t r = 0;
-	uint8_t g = 0;
-	uint8_t b = 255;
+	uint8_t g = 100;
+	uint8_t b = 50;
+	int32_t x; 
+	int32_t y;
 	uint16_t color = ST7735_Color565(r, g ,b);
 	for(uint32_t j=0; j<num; j++){
-	ST7735_DrawPixel((bufX[j]/128),(bufY[j]/128),color);
+		x = bufX[j]/128;
+		y = bufX[j]/128;
+		ST7735_DrawPixel(x,y,color);
 	}
 }
 
