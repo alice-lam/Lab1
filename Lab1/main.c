@@ -1,4 +1,4 @@
-// Lab1.c
+// main.c for Lab1
 // Base code from ST7735TestMain.c
 // Runs on LM4F120/TM4C123
 // Test the functions in ST7735.c by printing basic

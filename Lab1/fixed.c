@@ -29,11 +29,34 @@ int32_t Xmx,Xmn;        // X min and X max for initialiazaion and plotting
 int32_t Yrnge;		
 int32_t Xrnge;	
 
+/****************ST7735_sDecOut3***************
+ converts fixed point number to LCD
+ format signed 32-bit with resolution 0.001
+ range -9.999 to +9.999
+ Inputs:  signed 32-bit integer part of fixed-point number
+ Outputs: none
+ send exactly 6 characters to the LCD 
+Parameter LCD display
+ 12345    " *.***"
+  2345    " 2.345"  
+ -8100    "-8.100"
+  -102    "-0.102" 
+    31    " 0.031" 
+-12345    " *.***"
+ */ 
+#include <stdio.h>
+#include <stdint.h>
+#include "ST7735.h"
+
+int32_t Ymx,Ymn;  			// Y min and Y max set during initialiazaion and plotting 
+int32_t Xmx,Xmn;        // X min and X max for initialiazaion and plotting 
+int32_t Yrnge;		
+int32_t Xrnge;	
+
 void ST7735_sDecOut3(int32_t n){
 	//CODE
 	char number[6];
 	int32_t sign = 0;
-	int32_t length = 0;
 	int32_t div = 1000;
 	int32_t i;
 	
@@ -109,8 +132,6 @@ Parameter LCD display
 */
 void ST7735_uBinOut8(uint32_t n){
 	char number[6];
-	int32_t sign = 0;
-	int32_t length = 0;
 	int32_t div = 1000;
 	int32_t i;
 	int32_t blank;
@@ -130,9 +151,13 @@ void ST7735_uBinOut8(uint32_t n){
 	n = n/256;
 	if(n<1000){blank=2;}
 	else if ((n>999)&&(n<10000)){blank=2;}
-	else if (n > 9999){
+	else if ((n > 9999)&&(n<100000)){
 		blank=1;
 		div=10000;
+	}
+	else if (n > 99999){
+		blank=0;
+		div=100000;
 	}
 	
 	for(i = 0; i < 6; i++){
@@ -158,7 +183,6 @@ void ST7735_uBinOut8(uint32_t n){
 		ST7735_OutString((char*) number); 
 			
 }
-
 /**************ST7735_XYplotInit***************
  Specify the X and Y axes for an x-y scatter plot
  Draw the title and clear the plot area
