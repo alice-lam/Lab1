@@ -4,10 +4,17 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 C:\Users\kinan\Documents\7.0 Courses 2016 Fall\EE 445L\Lab1\Lab1\ST7735.uvproj
-Project File Date:  08/30/2016
+Project File Date:  09/05/2016
 
 <h2>Output:</h2>
-Build target 'ST7735'
+Rebuild target 'ST7735'
+assembling startup.s...
+compiling PLL.c...
+compiling ST7735.c...
+compiling ST7735TestMain.c...
+ST7735TestMain.c(578): warning:  #177-D: variable "i" was declared but never referenced
+  int main(void){uint32_t i;
+ST7735TestMain.c: 1 warning, 0 errors
 compiling fixed.c...
 fixed.c(36): warning:  #177-D: variable "length" was declared but never referenced
         int32_t length = 0;
@@ -17,32 +24,5 @@ fixed.c(109): warning:  #177-D: variable "length" was declared but never referen
         int32_t length = 0;
 fixed.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=2716 RO-data=16360 RW-data=44 ZI-data=1028  
-".\ST7735.axf" - 0 Error(s), 3 Warning(s).
-xf" - 1 Error(s), 3 Warning(s).
-Target not created
-variable "length" was declared but never referenced
-        int32_t length = 0;
-fixed.c(113): warning:  #68-D: integer conversion resulted in a change of sign
-        if ((n>256000)||(n<-256000)){
-fixed.c(108): warning:  #177-D: variable "length" was declared but never referenced
-        int32_t length = 0;
-fixed.c: 3 warnings, 0 errors
-"fixed.c" - 0 Error(s), 3 Warning(s).
-compiling fixed.c...
-fixed.c(35): warning:  #177-D: variable "length" was declared but never referenced
-        int32_t length = 0;
-fixed.c(113): warning:  #68-D: integer conversion resulted in a change of sign
-        if ((n>256000)||(n<-256000)){
-fixed.c(108): warning:  #177-D: variable "length" was declared but never referenced
-        int32_t length = 0;
-fixed.c: 3 warnings, 0 errors
-"fixed.c" - 0 Error(s), 3 Warning(s).
-Error: Could not load file 'C:\Users\kinan\Documents\7.0 Courses 2016 Fall\EE 445L\Lab1\Lab1\ST7735.axf'. Debugger aborted !
-Error: Could not load file 'C:\Users\kinan\Documents\7.0 Courses 2016 Fall\EE 445L\Lab1\Lab1\ST7735.axf'. Debugger aborted !
-
-ST7735TestMain.c(541): error:  #20: identifier "StarYbuf" is undefined
-      ST7735_XYplot(50,(int32_t *)StarXbuf,(int32_t *)StarYbuf);
-ST7735TestMain.c: 6 warnings, 7 errors
-".\ST7735.axf" - 7 Error(s), 6 Warning(s).
-Target not created
+Program Size: Code=6936 RO-data=17192 RW-data=72 ZI-data=1024  
+".\ST7735.axf" - 0 Error(s), 4 Warning(s).
