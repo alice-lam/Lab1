@@ -1,10 +1,12 @@
-// ST7735TestMain.c
+// Lab1.c
+// Base code from ST7735TestMain.c
 // Runs on LM4F120/TM4C123
 // Test the functions in ST7735.c by printing basic
 // patterns to the LCD.
 //    16-bit color, 128 wide by 160 high LCD
 // Daniel Valvano
 // March 30, 2015
+// Modified
 
 /* This example accompanies the book
    "Embedded Systems: Real Time Interfacing to ARM Cortex M Microcontrollers",

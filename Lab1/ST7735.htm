@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\ST7735.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\ST7735.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Mon Sep 05 21:15:32 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue Sep 06 11:02:59 2016
 <BR><P>
 <H3>Maximum Stack Usage =        208 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -156,7 +156,7 @@ Function Pointers
  <LI><a href="#[5a]">WideTimer5A_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[5b]">WideTimer5B_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[7d]">fputc</a> from st7735.o(i.fputc) referenced from printfa.o(i.__0printf)
- <LI><a href="#[7c]">main</a> from st7735testmain.o(i.main) referenced from entry9a.o(.ARM.Collect$$$$0000000B)
+ <LI><a href="#[7c]">main</a> from main.o(i.main) referenced from entry9a.o(.ARM.Collect$$$$0000000B)
  <LI><a href="#[39]">uDMA_Error</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[38]">uDMA_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
 </UL>
@@ -712,7 +712,7 @@ Global Symbols
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
 </UL>
 
-<P><STRONG><a name="[90]"></a>DelayWait10ms</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, st7735testmain.o(i.DelayWait10ms))
+<P><STRONG><a name="[90]"></a>DelayWait10ms</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, main.o(i.DelayWait10ms))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = DelayWait10ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pause
@@ -722,7 +722,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8f]"></a>Pause</STRONG> (Thumb, 36 bytes, Stack size 4 bytes, st7735testmain.o(i.Pause))
+<P><STRONG><a name="[8f]"></a>Pause</STRONG> (Thumb, 36 bytes, Stack size 4 bytes, main.o(i.Pause))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Pause &rArr; DelayWait10ms
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DelayWait10ms
@@ -730,7 +730,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[af]"></a>PortF_Init</STRONG> (Thumb, 110 bytes, Stack size 0 bytes, st7735testmain.o(i.PortF_Init))
+<P><STRONG><a name="[af]"></a>PortF_Init</STRONG> (Thumb, 110 bytes, Stack size 0 bytes, main.o(i.PortF_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -902,7 +902,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> printfa.o(i.__0printf)
 </UL>
-<P><STRONG><a name="[7c]"></a>main</STRONG> (Thumb, 202 bytes, Stack size 8 bytes, st7735testmain.o(i.main))
+<P><STRONG><a name="[7c]"></a>main</STRONG> (Thumb, 202 bytes, Stack size 8 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = main &rArr; ST7735_uBinOut8 &rArr; ST7735_OutString &rArr; ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_uBinOut8

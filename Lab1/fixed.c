@@ -173,7 +173,7 @@ void ST7735_uBinOut8(uint32_t n){
 void ST7735_XYplotInit(char *title, int32_t minX, int32_t maxX, int32_t minY, int32_t maxY){
   ST7735_InitR(INITR_REDTAB);
   ST7735_OutString(title);
-  ST7735_PlotClear(minY, maxY);  // range from minY to maxY, the numbers don't really matter this fuction is used here to clear the screen
+  ST7735_PlotClear(minY, maxY);  // this fuction is used here to clear the screen
 	Yrnge = maxY - minY;
 	Xrnge = maxX - minX;
 	Ymx = maxY; 
@@ -195,27 +195,26 @@ void ST7735_XYplotInit(char *title, int32_t minX, int32_t maxX, int32_t minY, in
 */
 void ST7735_XYplot(uint32_t num, int32_t bufX[], int32_t bufY[]){	int32_t x; int32_t y;
 	// Mix color for ploted points, Red 0-254 
-	uint8_t r = 0;															// Red
-	uint8_t g = 0;														// Green
+	uint8_t r = 0;																// Red
+	uint8_t g = 0;																// Green
 	uint8_t b = 254;															// Blue
-	uint16_t color = ST7735_Color565(r, g ,b);	// Generates 16-bit color code
-	// Scale and plot points to 128X128 screen
-	// TODO: check bounds of plot points each iteration against min max x,y parameters
+	uint16_t color = ST7735_Color565(r, g ,b);		// Generates 16-bit color code
+	// Scale and plot points to 128 X 128 grid
 	for(uint32_t j=0; j<num; j++){
 		y = 32+(127*(Ymx-bufY[j]))/Yrnge;
 		x = (127*(-Xmn+bufX[j]))/Xrnge;
 		//y = 32+(127*(bufY[j]))/Yrnge;
 		//x = (127*(bufX[j]))/Xrnge;
-		//Gradient
-		//ST7735_DrawPixel(x,y,color+31*x/127);
+		//Gradient Color
+			//ST7735_DrawPixel(x,y,color+31*x/127);
 			//ST7735_DrawPixel(x+1,y,color+31*x/127);
 			//ST7735_DrawPixel(x,y+1,color+31*x/127);
 			//ST7735_DrawPixel(x+1,y+1,color+31*x/127);
-		//normal
-		ST7735_DrawPixel(x,y,color);
-		ST7735_DrawPixel(x+1,y,color);
-		ST7735_DrawPixel(x,y+1,color);
-		ST7735_DrawPixel(x+1,y+1,color);
+		//Normal Color
+			ST7735_DrawPixel(x,y,color);
+			ST7735_DrawPixel(x+1,y,color);
+			ST7735_DrawPixel(x,y+1,color);
+			ST7735_DrawPixel(x+1,y+1,color);
 	}
 }
 
