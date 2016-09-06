@@ -1,8 +1,8 @@
 // filename ******** fixed.c ************** 
 // c file for Lab 1 
 // feel free to change the specific syntax of your system
-// put your name here
-// put the date here
+// Alice Lam / Kinan Hernandez
+// 9/5/16
 
 
 /****************ST7735_sDecOut3***************
@@ -47,6 +47,7 @@ void ST7735_sDecOut3(int32_t n){
 		number[5] = '*';
 	
 	}
+	else{
 	//*check neg/pos
 	if (n<0){
 		sign = -1;
@@ -73,11 +74,14 @@ void ST7735_sDecOut3(int32_t n){
 			}
 			else{
 				int num = n/div;
-				number[i] = num;
+				number[i] = num + '0';
 				n = n%div;
+				
 				div = div / 10;
+				
 			}
-		}		
+		}
+}		
 	//fputc(c);? or imp printf
 		ST7735_OutString((char*) number); 
 
@@ -109,9 +113,10 @@ void ST7735_uBinOut8(uint32_t n){
 	int32_t length = 0;
 	int32_t div = 1000;
 	int32_t i;
+	int32_t blank;
 	
 	//check >256000 or <-256000
-	if ((n>256000)||(n<-256000)){
+	if (n>255999){
 		number[0] = '*';                   
 		number[1] = '*';
 		number[2] = '*';
@@ -119,29 +124,36 @@ void ST7735_uBinOut8(uint32_t n){
 		number[4] = '*';
 		number[5] = '*';
 	}
-	
+	else{
 	//*1000 then divide by 256
 	n = n*1000;
 	n = n/256;
+	if(n<1000){blank=2;}
+	else if ((n>999)&&(n<10000)){blank=2;}
+	else if (n > 9999){
+		blank=1;
+		div=10000;
+	}
 	
 	for(i = 0; i < 6; i++){
-			
-			if(i == 0 && sign==-1){
-				number[i] = '-';
+
+			if (blank!=0){
+			number[i]=' ';
+			blank=blank-1;
 			}
-			else if(i == 0 && sign==0){
-				number[i] = ' ';
-			}
-			else if(i == 2){
+		
+			else if(i == 3){
 				number[i] = '.';
 			}
+			
 			else{
 				int num = n/div;
-				number[i] = num;
+				number[i] = num+'0';
 				n = n%div;
 				div = div / 10;
 			}
-	}		
+	}	
+}	
 	//fputc(c);? or imp printf
 		ST7735_OutString((char*) number); 
 			

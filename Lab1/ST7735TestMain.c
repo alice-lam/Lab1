@@ -516,6 +516,8 @@ struct outTestCase1{    // used to test routines
 };
 typedef const struct outTestCase1 outTestCaseType1;
 outTestCaseType1 outTests1[13]={ 
+{ 10000,  " =  *.***?\r" }, // error
+{-10000,  " =  *.***?\r" }, // error
 {     0,  " =  0.000?\r" }, //     0/1000 = 0.000  
 {     4,  " =  0.004?\r" }, //     4/1000 = 0.004  
 {    -5,  " = -0.005?\r" }, //    -5/1000 = -0.005
@@ -526,9 +528,7 @@ outTestCaseType1 outTests1[13]={
 {  1234,  " =  1.234?\r" }, //  1234/1000 = 1.234
 { -5678,  " = -5.678?\r" }, // -5678/1000 = -5.678
 { -9999,  " = -9.999?\r" }, // -9999/1000 = -9.999
-{  9999,  " =  9.999?\r" }, //  9999/1000 = 9.999
-{ 10000,  " =  *.***?\r" }, // error
-{-10000,  " =  *.***?\r" }  // error
+{  9999,  " =  9.999?\r" } //  9999/1000 = 9.999
 };
 
 // const will place these structures in ROM
@@ -575,6 +575,9 @@ const int32_t StarXbuf[50] = {0, -6, -12, -18, -24, -30, -35, -41, -47, -53, 59,
 };
 const int32_t StarYbuf[50] = {190, 172, 154, 136, 118, 100, 81, 63, 45, 27, 9, 27, 45, 63, 81, 100, 118, 136, 154, 172, 121, 121, 121, 121, 121, 121, 121, 121, 121, 121, 9, 20, 31, 43, 54, 65, 76, 87, 99, 110, 121, 110, 99, 87, 76, 65, 54, 43, 31, 20
 };
+
+
+
 int main(void){uint32_t i;
   PLL_Init(Bus80MHz);
   PortF_Init();
@@ -583,20 +586,20 @@ int main(void){uint32_t i;
     ST7735_FillScreen(0);  // set screen to black
     ST7735_SetCursor(0,0);
     printf("Lab 1\rST7735_sDecOut3\r");
-   // for(i=0; i<13; i++){
-   //   ST7735_sDecOut3(outTests1[i].InNumber);  // your solution
-    //  ST7735_OutString((char*)outTests1[i].OutBuffer); // expected solution
-   // }
-   // Pause();
+    for(i=0; i<13; i++){
+      ST7735_sDecOut3(outTests1[i].InNumber);  // your solution
+      ST7735_OutString((char*)outTests1[i].OutBuffer); // expected solution
+    }
+    Pause();
   
     ST7735_FillScreen(0);  // set screen to black
     ST7735_SetCursor(0,0);
     printf("ST7735_uBinOut8\r");
-   // for(i=0; i<14; i++){
-    //  ST7735_uBinOut8(outTests2[i].InNumber);  // your solution
-    //  ST7735_OutString((char*)outTests2[i].OutBuffer); // expected solution
-   // }
-   // Pause();
+    for(i=0; i<14; i++){
+      ST7735_uBinOut8(outTests2[i].InNumber);  // your solution
+      ST7735_OutString((char*)outTests2[i].OutBuffer); // expected solution
+    }
+    Pause();
     
     ST7735_XYplotInit("Circle",-2500, 2500, -2500, 2500);
     ST7735_XYplot(180,(int32_t *)CircleXbuf,(int32_t *)CircleYbuf);
